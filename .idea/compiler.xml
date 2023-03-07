@@ -14,7 +14,7 @@
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
-      <module name="cardservice" target="17" />
+      <module name="cardservice" target="11" />
       <module name="clientservice" target="11" />
       <module name="cloudgateway" target="11" />
       <module name="eurekaserver" target="11" />
@@ -22,6 +22,7 @@
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="cardservice" options="-parameters" />
       <module name="clientservice" options="-parameters" />
       <module name="cloudgateway" options="-parameters" />
       <module name="eurekaserver" options="-parameters" />

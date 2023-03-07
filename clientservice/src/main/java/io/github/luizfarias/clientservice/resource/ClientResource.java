@@ -28,7 +28,6 @@ public class ClientResource {
                 .toUri();
         return ResponseEntity.created(headerLocation).build();
     }
-
     @GetMapping(params = "cpf")
     public ResponseEntity clientData(@RequestParam String cpf){
         var client = clientService.getByCpf(cpf);
