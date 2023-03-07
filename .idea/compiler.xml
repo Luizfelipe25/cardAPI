@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile default="true" name="Default" enabled="true" />
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="eurekaserver" />
+        <module name="clientservice" />
+        <module name="cardservice" />
+        <module name="cloudgateway" />
+      </profile>
+    </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="cardservice" target="17" />
+      <module name="clientservice" target="11" />
+      <module name="cloudgateway" target="11" />
+      <module name="eurekaserver" target="11" />
+    </bytecodeTargetLevel>
+  </component>
+  <component name="JavacSettings">
+    <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="clientservice" options="-parameters" />
+      <module name="cloudgateway" options="-parameters" />
+      <module name="eurekaserver" options="-parameters" />
+    </option>
+  </component>
+</project>
