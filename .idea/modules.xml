@@ -7,6 +7,7 @@
       <module fileurl="file://$PROJECT_DIR$/cloudgateway/cloudgateway.iml" filepath="$PROJECT_DIR$/cloudgateway/cloudgateway.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/course.iml" filepath="$PROJECT_DIR$/.idea/course.iml" />
       <module fileurl="file://$PROJECT_DIR$/eurekaserver/eurekaserver.iml" filepath="$PROJECT_DIR$/eurekaserver/eurekaserver.iml" />
+      <module fileurl="file://$PROJECT_DIR$/evaluatorservice/evaluatorservice.iml" filepath="$PROJECT_DIR$/evaluatorservice/evaluatorservice.iml" />
     </modules>
   </component>
 </project>

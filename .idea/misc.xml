@@ -8,6 +8,7 @@
         <option value="$PROJECT_DIR$/cloudgateway/cloudgateway/pom.xml" />
         <option value="$PROJECT_DIR$/cloudgateway/pom.xml" />
         <option value="$PROJECT_DIR$/cardservice/pom.xml" />
+        <option value="$PROJECT_DIR$/evaluatorservice/pom.xml" />
       </list>
     </option>
   </component>
