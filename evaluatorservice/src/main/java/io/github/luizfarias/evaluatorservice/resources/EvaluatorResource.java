@@ -1,11 +1,10 @@
 package io.github.luizfarias.evaluatorservice.resources;
 
 
-import io.github.luizfarias.evaluatorservice.dto.ClientEvaluationResponse;
-import io.github.luizfarias.evaluatorservice.dto.ClientStatus;
-import io.github.luizfarias.evaluatorservice.dto.DadosAvaliacao;
+import io.github.luizfarias.evaluatorservice.dto.*;
 import io.github.luizfarias.evaluatorservice.exceptions.ClientDataNotFound;
 import io.github.luizfarias.evaluatorservice.exceptions.MissMsComunicationException;
+import io.github.luizfarias.evaluatorservice.exceptions.RequestCardErrorException;
 import io.github.luizfarias.evaluatorservice.services.EvaluatorService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -45,6 +44,16 @@ public class EvaluatorResource {
             return ResponseEntity.notFound().build();
         } catch (MissMsComunicationException e) {
             return ResponseEntity.status(HttpStatus.resolve(e.getStatus())).body(e.getMessage());
+        }
+    }
+
+    @PostMapping("solicitacoes-cartao")
+    public ResponseEntity requestCard(@RequestBody RequestEmissionCardData data){
+        try {
+            ProtocoloSolicitacaoCartao protocoloSolicitacaoCartao = evaluatorService.solicitarEmissaoCartao(data);
+            return ResponseEntity.ok(protocoloSolicitacaoCartao);
+        }catch (RequestCardErrorException e){
+            return ResponseEntity.internalServerError().body(e.getMessage());
         }
     }
 }

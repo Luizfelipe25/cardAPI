@@ -1,11 +1,14 @@
 package io.github.luizfarias.evaluatorservice.services;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import feign.FeignException;
 import io.github.luizfarias.evaluatorservice.dto.*;
 import io.github.luizfarias.evaluatorservice.exceptions.ClientDataNotFound;
 import io.github.luizfarias.evaluatorservice.exceptions.MissMsComunicationException;
+import io.github.luizfarias.evaluatorservice.exceptions.RequestCardErrorException;
 import io.github.luizfarias.evaluatorservice.infra.CardsClient;
 import io.github.luizfarias.evaluatorservice.infra.ClientsClient;
+import io.github.luizfarias.evaluatorservice.infra.mqueue.SolicitacaoEmissaoCartaoPublisher;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -15,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 
 import java.math.BigDecimal;
 import java.util.List;
+import java.util.UUID;
 import java.util.stream.Collectors;
 
 @Service
@@ -23,6 +27,8 @@ public class EvaluatorService {
 
     private final ClientsClient clientsClient;
     private final CardsClient cardsClient;
+
+    private final SolicitacaoEmissaoCartaoPublisher solicitacaoEmissaoCartaoPublisher;
 
     public ClientStatus getClientSituation(String cpf) throws ClientDataNotFound, MissMsComunicationException{
         try{
@@ -79,6 +85,16 @@ public class EvaluatorService {
                 throw new ClientDataNotFound();
             }
             throw new MissMsComunicationException(e.getMessage(),status);
+        }
+    }
+
+    public ProtocoloSolicitacaoCartao solicitarEmissaoCartao(RequestEmissionCardData data){
+        try{
+           solicitacaoEmissaoCartaoPublisher.solicitarCartao(data);
+           var protocolo = UUID.randomUUID().toString();
+           return new ProtocoloSolicitacaoCartao(protocolo);
+        }catch (Exception e){
+            throw new RequestCardErrorException(e.getMessage());
         }
     }
 }
