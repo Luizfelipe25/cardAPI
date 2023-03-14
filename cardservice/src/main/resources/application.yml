@@ -2,7 +2,8 @@ spring:
   application:
     name: cardservice
   rabbitmq:
-    host: localhost
+ #   host: localhost todo adicionar profile
+    host: ${RABBITMQ_SERVER}
     port: 5672
     username: guest
     password: guest
@@ -10,10 +11,11 @@ spring:
 server:
   port: 8082
 
+# http://mscourse:mscourse@localhost:8761/eureka todo adicionar profile
 eureka:
   client:
     service-url:
-      defaultZone: http://mscourse:mscourse@localhost:8761/eureka
+      defaultZone: http://mscourse:mscourse@${EUREKA_SERVER}:8761/eureka
   instance:
     instance-id: ${spring.application.name}:${spring.application.instance_id:${random.value}}
 
