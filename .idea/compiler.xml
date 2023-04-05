@@ -14,13 +14,6 @@
         <module name="evaluatorservice" />
       </profile>
     </annotationProcessing>
-    <bytecodeTargetLevel>
-      <module name="cardservice" target="11" />
-      <module name="clientservice" target="11" />
-      <module name="cloudgateway" target="11" />
-      <module name="eurekaserver" target="11" />
-      <module name="evaluatorservice" target="11" />
-    </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
